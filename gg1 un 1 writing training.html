@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Word Quest: учим английские слова</title>
+<style>
+:root{--ink:#2b2250;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;color:var(--ink);min-height:100vh;background:linear-gradient(135deg,#ffd86f,#fc6262 45%,#7f5af0);background-attachment:fixed;text-align:center;padding:12px}
+h1{margin:8px 0;color:#fff;font-size:clamp(28px,6vw,48px);text-shadow:0 4px 0 rgba(0,0,0,.2)}
+.bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.pill{background:#fff;border-radius:99px;padding:6px 16px;font-weight:700;box-shadow:0 4px 0 rgba(0,0,0,.15)}
+.wrap{max-width:760px;margin:auto}
+.menu{display:grid;gap:12px}
+.lvl{background:var(--card);border:0;border-radius:22px;padding:14px 18px;display:flex;align-items:center;gap:14px;font:inherit;color:inherit;text-align:left;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.18);transition:transform .15s}
+.lvl:hover:not(:disabled){transform:scale(1.03) rotate(-.6deg)}
+.lvl:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.6)}
+.lvl .ic{font-size:40px}.lvl b{font-size:20px}.lvl small{display:block;opacity:.7}
+.lvl .st{margin-left:auto;font-size:22px}
+.stage{background:var(--card);border-radius:28px;padding:20px 14px;box-shadow:0 8px 0 rgba(0,0,0,.18);min-height:360px}
+.big{font-size:clamp(80px,22vw,140px);line-height:1.1;animation:pop .5s}
+.ru{opacity:.65;font-size:18px;margin:2px 0 10px}
+.btn{font:inherit;font-weight:700;font-size:20px;border:0;border-radius:16px;padding:12px 18px;margin:5px;background:#e8e4ff;color:var(--ink);cursor:pointer;box-shadow:0 4px 0 #b9b0f0;transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b9b0f0}
+.btn.ok{background:#7ee8a2;box-shadow:0 4px 0 #3fb86a}
+.btn.no{background:#ff9aa2;box-shadow:0 4px 0 #d9606c}
+.btn.go{background:#7f5af0;color:#fff;box-shadow:0 4px 0 #5436c0}
+.btn.used{visibility:hidden}
+.slots{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:14px 0;min-height:56px}
+.slot{min-width:38px;height:52px;border-bottom:4px solid #7f5af0;font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.slot.gap{border:0;min-width:18px}.slot.fill{color:#7f5af0;animation:pop .3s}
+.prog{height:14px;background:#e8e4ff;border-radius:9px;overflow:hidden;margin:0 0 12px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#ffb703,#fb5607);width:0;transition:width .4s}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.fc{background:#f4f1ff;border-radius:18px;padding:10px;cursor:pointer;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .2s;user-select:none}
+.fc:hover{transform:scale(1.06) rotate(1deg)}
+.fc .e{font-size:50px}.fc .w{font-weight:800;font-size:20px;margin-top:4px}
+.fc.seen{background:#d8f8e3}
+input.t{font:inherit;font-size:28px;text-align:center;border:4px solid #b9b0f0;border-radius:16px;padding:10px;width:min(100%,380px);color:var(--ink)}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+@keyframes pop{0%{transform:scale(.3) rotate(-10deg)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.win .big{animation:bounce 1s infinite}
+@keyframes bounce{50%{transform:translateY(-18px) rotate(6deg)}}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:9}
+.top{display:flex;justify-content:space-between;align-items:center}
+</style></head><body>
+<canvas id="cv"></canvas>
+<div class="wrap">
+<h1>🚀 Word Quest</h1><div class="bar" id="nav"></div>
+<div class="bar"><span class="pill">⭐ <span id="sc">0</span></span><span class="pill" id="lv">Выбери игру</span></div>
+<div id="app"></div>
+</div>
+<script>
+const W=[["boots","🥾","ботинки"],["cap","🧢","кепка"],["coat","🥼","пальто"],["dress","👗","платье"],["hoodie","🥷","худи"],["jacket","🧥","куртка"],["jeans","👖","джинсы"],["jumper","🧶","джемпер"],["shirt","👔","рубашка"],["shoes","👞","туфли"],["skirt","🩰","юбка"],["T-shirt","👕","футболка"],["top","🎽","топ"],["tracksuit","🏃","спортивный костюм"],["trainers","👟","кроссовки"],["trousers","🕴️","брюки"],["backpack","🎒","рюкзак"],["games console","🎮","игровая приставка"],["laptop computer","💻","ноутбук"],["mobile phone","📱","мобильный телефон"],["mountain bike","🚵","горный велосипед"],["skateboard","🛹","скейтборд"]];
+const LV=[["🔀","Собери слово","Выбирай буквы по порядку"],["🧠","Лишние буквы","Букв больше, чем нужно!"],["🏆","Напиши сам","Только картинка и перевод"]];
+let score=0,done=[false,false,false,false,false];
+const $=id=>document.getElementById(id),app=$("app");
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+const AC=window.AudioContext?new AudioContext():null;
+function tone(f,d=.12,t="sine",delay=0){if(!AC)return;try{const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.value=.12;o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+delay);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+delay+d);o.stop(AC.currentTime+delay+d)}catch(e){}}
+const good=()=>{tone(660);tone(880,.15,"sine",.1);tone(1320,.2,"sine",.2)},bad=()=>tone(150,.25,"sawtooth");
+function say(){}
+function addScore(n){score+=n;$("sc").textContent=score}
+/* confetti */
+const cv=$("cv"),cx=cv.getContext("2d");let ps=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener("resize",size);
+function boom(x=innerWidth/2,y=innerHeight/3,n=70){const em=["⭐","✨","🎉","💥","🌈"];for(let i=0;i<n;i++)ps.push({x,y,vx:(Math.random()-.5)*14,vy:Math.random()*-13-2,c:`hsl(${Math.random()*360},90%,60%)`,s:Math.random()*8+4,e:Math.random()<.2?rnd(em):null,l:90})}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);ps=ps.filter(p=>p.l>0);for(const p of ps){p.x+=p.vx;p.y+=p.vy;p.vy+=.4;p.l--;cx.globalAlpha=Math.min(1,p.l/30);if(p.e){cx.font="22px serif";cx.fillText(p.e,p.x,p.y)}else{cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.s,p.s)}}requestAnimationFrame(loop)})();
+function shake(el){el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}
+/* menu */
+function menu(){nav(-1);$("lv").textContent="Выбери миссию";app.innerHTML='<div class="menu">'+LV.map((l,i)=>`<button class="lvl"  data-i="${i}"><span class="ic">${l[0]}</span><span><b>${i+1}. ${l[1]}</b><small>${l[2]}</small></span><span class="st">${done[i]?"⭐":"▶️"}</span></button>`).join("")+"</div>";
+app.querySelectorAll(".lvl").forEach(b=>b.onclick=()=>{AC&&AC.resume();start(+b.dataset.i)})}
+function nav(i){$("nav").innerHTML=LV.map((l,k)=>`<button class="btn${k===i?" go":""}" data-k="${k}">${l[0]} ${k+1}</button>`).join("");$("nav").querySelectorAll(".btn").forEach(b=>b.onclick=()=>{AC&&AC.resume();start(+b.dataset.k)})}
+function start(i){nav(i);$("lv").textContent=`Миссия ${i+1}`;rounds(i)}
+function finish(i){done[i]=true;boom(innerWidth/2,innerHeight/2,200);good();app.innerHTML=`<div class="stage win"><div class="big">🏅</div><h2>Миссия пройдена!</h2><p>Всего звёзд: ${score} ⭐</p><button class="btn go" id="nx">${i<2?"Дальше ▶️":"В меню 🏠"}</button></div>`;$("nx").onclick=()=>i<2?start(i+1):menu()}
+/* L1 */
+function flash(){const seen=new Set();app.innerHTML='<div class="stage"><div class="top"><button class="btn" id="home">🏠</button><button class="btn go" id="nxt">Next ▶</button></div><p>Нажимай на карточки: услышишь слово и увидишь, как оно пишется.</p><div class="prog"><i id="pg"></i></div><div class="grid">'+W.map((w,k)=>`<div class="fc" data-k="${k}"><div class="e">${w[1]}</div><div class="w">❓</div><div class="ru">${w[2]}</div></div>`).join("")+"</div></div>";
+$("home").onclick=menu;$("nxt").onclick=()=>start(1);app.querySelectorAll(".fc").forEach(c=>c.onclick=()=>{const k=+c.dataset.k;c.querySelector(".w").textContent=W[k][0];c.classList.add("seen");say(W[k][0]);tone(500+k*20,.1);if(!seen.has(k)){seen.add(k);addScore(1)}$("pg").style.width=seen.size/W.length*100+"%";if(seen.size==W.length)setTimeout(()=>finish(0),600)})}
+/* rounds */
+function rounds(L){const N=W.length,q=shuf(W);let n=0;
+function next(){if(n>=N)return finish(L);const w=q[n];app.innerHTML=`<div class="stage"><div class="top"><span>${n+1}/${N}</span><span><button class="btn" id="bk">◀ Back</button><button class="btn" id="hm">🏠</button><button class="btn go" id="nx2">Next ▶</button></span></div><div class="prog"><i style="width:${n/N*100}%"></i></div><div class="big" id="pic">${w[1]}</div><div class="ru">${w[2]}</div><div id="play"></div></div>`;$("hm").onclick=menu;$("nx2").onclick=()=>{n++;next()};$("bk").onclick=()=>{if(n>0){n--;next()}};
+let miss=0;const ok=()=>{good();boom();addScore(miss?3:10);setTimeout(()=>{n++;next()},900)};const wrong=el=>{miss++;bad();shake(el||$("pic"))};
+[scramble,more,typed][L](w,ok,wrong,()=>miss);}
+next()}
+function choose(w,ok,wrong){const o=shuf([w,...shuf(W.filter(x=>x!==w)).slice(0,3)]);$("play").innerHTML=o.map(x=>`<button class="btn">${x[0]}</button>`).join("");
+$("play").querySelectorAll(".btn").forEach((b,i)=>b.onclick=()=>{if(o[i]===w){b.classList.add("ok");say(w[0]);ok()}else{b.classList.add("no");wrong(b)}})}
+/* slots-based builder shared by L3 and L4 */
+function builder(w,ok,wrong,hidden,extra){const s=w[0],ch=[...s];const idx=ch.map((c,i)=>i).filter(i=>c(i)!==" ");function c(i){return ch[i]}
+const need=hidden.slice();let ptr=0;const state=ch.map((c,i)=>need.includes(i)||c===" "?null:c);
+const sl=()=>ch.map((c,i)=>c===" "?'<div class="slot gap"></div>':`<div class="slot ${state[i]&&!need.includes(i)?"":""}" data-i="${i}">${need.includes(i)?(i<need[ptr]||ptr>=need.length||need.indexOf(i)<ptr?`<span class="fill">${c}</span>`:"_"):c}</div>`).join("");
+let letters=shuf(extra.concat(need.map(i=>ch[i])));
+const draw=()=>{$("play").innerHTML=`<div class="slots">${sl()}</div><div>${letters.map((l,k)=>`<button class="btn" data-k="${k}">${l}</button>`).join("")}</div>`;
+$("play").querySelectorAll(".btn").forEach(b=>b.onclick=()=>{const k=+b.dataset.k,l=letters[k];if(l.toLowerCase()===ch[need[ptr]].toLowerCase()){tone(500+ptr*80,.1);ptr++;b.classList.add("used");const keep=letters;draw2(keep,k)}else{b.classList.add("no");wrong($("play"));setTimeout(()=>b.classList.remove("no"),400)}})};
+const used=new Set();
+function draw2(l,k){used.add(k);$("play").querySelector(".slots").innerHTML=sl();$("play").querySelectorAll(".btn").forEach(b=>{if(used.has(+b.dataset.k))b.classList.add("used")});if(ptr>=need.length){say(s);ok()}}
+draw()}
+function gaps(w,ok,wrong){const ch=[...w[0]];const cand=ch.map((c,i)=>i).filter(i=>ch[i]!==" ");const k=Math.min(4,Math.max(2,Math.floor(cand.length/3)));const hid=shuf(cand).slice(0,k).sort((a,b)=>a-b);const extra=shuf([..."abcdefghijklmnoprstuw"]).slice(0,3);builder(w,ok,wrong,hid,extra)}
+function scramble(w,ok,wrong){const ch=[...w[0]];const hid=ch.map((c,i)=>i).filter(i=>ch[i]!==" ");builder(w,ok,wrong,hid,[])}
+function more(w,ok,wrong){const hid=[...w[0]].map((c,i)=>i).filter(i=>w[0][i]!==" ");builder(w,ok,wrong,hid,shuf([..."abcdefghilmnoprstuwy"]).slice(0,4))}
+function typed(w,ok,wrong,miss){$("play").innerHTML=`<input class="t" id="in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="напиши слово"><div><button class="btn go" id="chk">Проверить ✅</button><button class="btn" id="hint">💡 Подсказка</button></div><div class="ru" id="hn"></div>`;
+const inp=$("in");inp.focus();let h=0;
+const check=()=>{if(inp.value.trim().toLowerCase().replace(/\s+/g," ")===w[0].toLowerCase()){say(w[0]);ok()}else{wrong(inp);inp.value=""}};
+$("chk").onclick=check;inp.onkeydown=e=>{if(e.key==="Enter")check()};
+$("hint").onclick=()=>{h++;$("hn").textContent=w[0].slice(0,h)+w[0].slice(h).replace(/[^ ]/g,"•");tone(400,.1)}}
+menu();
+</script></body></html>
