@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interview phrases trainer</title>
+<style>
+:root{--bg:#f3efe9;--card:#fffdf9;--ink:#232036;--mute:#6b6779;--line:#ddd6ca;--acc:#a6283f;--accsoft:#f4dde1;--ok:#1f7a4d;--oksoft:#d9efe3;--bad:#b3261e;--badsoft:#f9dcd9;--tile:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a26;--card:#25222f;--ink:#f0ecf5;--mute:#a29db3;--line:#3b3748;--acc:#ef6b82;--accsoft:#43232e;--ok:#5fd09a;--oksoft:#1e3a2d;--bad:#ff8b82;--badsoft:#472422;--tile:#2d2a39;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1a26;--card:#25222f;--ink:#f0ecf5;--mute:#a29db3;--line:#3b3748;--acc:#ef6b82;--accsoft:#43232e;--ok:#5fd09a;--oksoft:#1e3a2d;--bad:#ff8b82;--badsoft:#472422;--tile:#2d2a39;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:2rem;line-height:1.15;margin:8px 0 4px}
+.sub{color:var(--mute);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:.95rem}
+nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+nav button{flex:0 0 auto;font:600 .92rem system-ui,sans-serif;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+nav button[aria-selected="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.stage{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 18px}
+.bar{display:flex;justify-content:space-between;align-items:center;font:600 .88rem system-ui,sans-serif;color:var(--mute);margin-bottom:12px}
+.track{height:6px;background:var(--line);border-radius:6px;flex:1;margin:0 12px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--acc);transition:width .3s}
+.task{font:600 .9rem system-ui,sans-serif;color:var(--mute);margin:0 0 6px}
+.ru{font-size:1.35rem;margin:0 0 18px;line-height:1.35}
+.ans{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-content:flex-start}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.t{font:500 1.05rem Georgia,serif;padding:9px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer;min-height:44px}
+.t:hover{border-color:var(--acc)}
+.t.used{opacity:.25;pointer-events:none}
+.t.ok{background:var(--oksoft);border-color:var(--ok)}
+.t.bad{background:var(--badsoft);border-color:var(--bad)}
+.opt{display:block;width:100%;text-align:left;margin-bottom:10px;font-size:1.1rem}
+.sent{display:flex;flex-wrap:wrap;gap:6px;font-size:1.25rem;margin-bottom:16px}
+.sent .t{padding:6px 10px}
+input[type=text]{width:100%;font:1.1rem Georgia,serif;padding:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--tile);color:var(--ink);margin-bottom:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 1rem system-ui,sans-serif;padding:11px 18px;border-radius:10px;border:1.5px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.fb{margin-top:16px;padding:12px 14px;border-radius:12px;font-family:system-ui,sans-serif;font-size:.98rem}
+.fb:empty{display:none}
+.fb.ok{background:var(--oksoft);color:var(--ok)}
+.fb.bad{background:var(--badsoft);color:var(--bad)}
+.fb b{font-family:Georgia,serif;font-size:1.1rem;display:block;margin-top:4px}
+.end{text-align:center;padding:20px 0}
+.end .big{font-size:2.4rem;margin:0 0 6px}
+.group{font:700 1.05rem system-ui,sans-serif;margin:22px 0 8px}
+.group:first-child{margin-top:0}
+.ph{width:100%;text-align:left;display:block;padding:12px 14px;margin-bottom:8px;border-radius:12px;border:1.5px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer;font:1.12rem Georgia,serif}
+.ph small{display:none;color:var(--acc);font:.92rem system-ui,sans-serif;margin-top:4px}
+.ph.open small{display:block}
+.note{color:var(--mute);font:.9rem system-ui,sans-serif;margin-top:14px}
+@media (prefers-reduced-motion:no-preference){.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}}
+</style>
+</head>
+<body>
+<main>
+<h1>Interview phrases</h1>
+<p class="sub">Questions and answers for an interview. Pick a task and practise until the phrases feel automatic.</p>
+<nav id="tabs" role="tablist"></nav>
+<section class="stage" id="stage" aria-live="polite"></section>
+</main>
+<script>
+const P=[
+{g:0,e:"Why do you want to help with the musical?",r:"Ask why someone wants to help with the musical.",x:[3,"to"],w:["Why you do want to help with the musical?","Why do you want help with the musical?"]},
+{g:0,e:"Why are you interested in this?",r:"Ask why someone is interested in this.",x:[3,"of"],w:["Why are you interested on this?","Why you are interested in this?"]},
+{g:1,e:"Have you ever done this type of work before?",r:"Ask if someone has done this type of work in the past.",x:[3,"do"],w:["Have you ever do this type of work before?","Have you ever done this type work before?"]},
+{g:1,e:"Have you got any experience of doing lighting?",r:"Ask if someone has any experience of lighting.",x:[4,"a"],w:["Have you any got experience of doing lighting?","Have you got any experience of do lighting?"]},
+{g:1,e:"Can you use a mixing desk?",r:"Ask if someone is able to use a mixing desk.",x:[1,"do"],w:["Can you to use a mixing desk?","Do you can use a mixing desk?"]},
+{g:2,e:"I can read music.",r:"Say that you are able to read music.",x:[1,"to"],w:["I can to read music.","I can reading music."]},
+{g:2,e:"I know a little about sound.",r:"Say that you have a small amount of knowledge about sound.",x:[4,"of"],w:["I know a few about sound.","I know a little of sound."]},
+{g:2,e:"I don’t know anything about musicals.",r:"Say that you have no knowledge at all about musicals.",x:[3,"not"],w:["I don’t know nothing about musicals.","I know anything not about musicals."]},
+{g:2,e:"Not really.",r:"Answer a “Can you…?” question when you can’t really do it.",x:[1,"so"],w:["No really.","Not real."]}
+];
+const FR=[
+{f:"Why do you want to … ?",t:x=>"Why do you want to "+x+"?",c:x=>"Ask why someone wants to "+x+".",w:x=>["Why you do want to "+x+"?","Why do you want "+x+"?"],x:[3,"to"],rt:y=>"Почему ты хочешь "+y+"?",ru:["вступить в театральный кружок", "работать за кулисами", "помочь со светом", "рисовать декорации", "быть волонтёром в театре"],ctx:["join the drama club","work backstage","help with the lighting","paint the scenery","volunteer at the theatre"]},
+{f:"Why are you interested in … ?",t:x=>"Why are you interested in "+x+"?",c:x=>"Ask why someone is interested in "+x+".",w:x=>["Why you are interested in "+x+"?","Why are you interested on "+x+"?"],x:[3,"of"],rt:y=>"Почему тебя интересует "+y+"?",ru:["работа за кулисами", "эта работа", "школьный спектакль", "сценография", "наша театральная группа"],ctx:["working backstage","this job","the school play","stage design","our theatre group"]},
+{f:"Have you ever done … before?",t:x=>"Have you ever done "+x+" before?",c:x=>"Ask if someone has done "+x+" in the past.",w:x=>["Have you ever do "+x+" before?","Have you done ever "+x+" before?"],x:[3,"do"],rt:y=>"Ты когда-нибудь раньше "+y+"?",ru:["занимался такой работой", "занимался волонтёрством", "делал такую работу", "работал на сцене", "делал что-то подобное"],ctx:["this type of work","any volunteering","a job like this","any stage work","anything like this"]},
+{f:"Have you got any experience of … ?",t:x=>"Have you got any experience of "+x+"?",c:x=>"Ask if someone has any experience of "+x+".",w:x=>["Have you any got experience of "+x+"?","Have you got any experience on "+x+"?"],x:[4,"a"],rt:y=>"Есть ли у тебя опыт "+y+"?",ru:["работы со светом", "работы в театре", "работы со звуком", "рисования декораций", "помощи на мероприятиях"],ctx:["doing lighting","working in a theatre","running sound","painting scenery","helping at events"]},
+{f:"Can you … ?",t:x=>"Can you "+x+"?",c:x=>"Ask if someone is able to "+x+".",w:x=>["Can you to "+x+"?","Do you can "+x+"?"],x:[1,"do"],rt:y=>"Ты умеешь "+y+"?",ru:["пользоваться микшерным пультом", "играть на пианино", "работать со светом", "читать ноты", "делать декорации"],ctx:["use a mixing desk","play the piano","work with lights","read music","build scenery"]}
+];
+const V=FR.flatMap(f=>f.ctx.map((x,k)=>({g:-1,e:f.t(x),r:f.rt(f.ru[k]),w:f.w(x),x:f.x})));
+const GN=["General interview questions","Questions about experience/abilities","Talking about your experience/abilities"];
+const T=[["cards","Cheat sheet"],["order","1. Build the phrase"],["extra","2. Extra word"],["pick","3. Pick the right one"],["type","4. Type it"],["mix","5. Key patterns mix"]];
+const $=s=>document.querySelector(s),st=$("#stage");
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const nrm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.?!,]/g,"").replace(/\s+/g," ").trim();
+const el=(h)=>{const d=document.createElement("div");d.innerHTML=h;return d.firstElementChild};
+let mode="cards",q=[],i=0,score=0,done=false;
+
+$("#tabs").innerHTML=T.map(([k,n])=>`<button role="tab" data-k="${k}">${n}</button>`).join("");
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>go(b.dataset.k));
+
+function go(k){mode=k;document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.k===k));
+ if(k==="cards")return cards();q=k==="mix"?sh(V).slice(0,15):sh(k==="order"?P.filter(p=>p.e.split(" ").length>=5):P);i=0;score=0;round()}
+
+function cards(){let h=`<div class="group">Key patterns</div>`+FR.map(f=>`<button class="ph">${f.f}<small>${f.ctx.slice(0,3).map(x=>f.t(x)).join("<br>")}</small></button>`).join("");GN.forEach((n,g)=>{h+=`<div class="group">${n}</div>`+P.filter(p=>p.g===g).map(p=>`<button class="ph">${p.e}<small>${p.r}</small></button>`).join("")});
+ st.innerHTML=h+`<p class="note">Tap a phrase to see when you use it, or examples for a pattern. Read each one aloud, then move on to the tasks.</p>`;
+ st.querySelectorAll(".ph").forEach(b=>b.onclick=()=>b.classList.toggle("open"))}
+
+function head(){return `<div class="bar"><span>${i+1} / ${q.length}</span><span class="track"><i style="width:${i/q.length*100}%"></i></span><span>Correct: ${score}</span></div>`}
+function fb(ok,msg,ans){const f=$("#fb");f.className="fb "+(ok?"ok":"bad");f.innerHTML=(ok?"Correct!":msg)+(ans?`<b>${ans}</b>`:"");
+ $("#nx").classList.remove("ghost");$("#nx").focus();done=true;if(ok)score++}
+function foot(){return `<div id="fb" class="fb"></div><div class="row" style="margin-top:14px"><button class="btn ghost" id="nx">${i+1<q.length?"Next":"Results"}</button></div>`}
+function wire(){
+ $("#nx").onclick=()=>{i++;round()}}
+function round(){done=false;
+ if(i>=q.length){const pct=Math.round(score/q.length*100);
+  st.innerHTML=`<div class="end"><p class="big">${pct>=90?"Excellent!":pct>=60?"Good job!":"Keep practising"}</p><p>${score} out of ${q.length} correct.</p><p class="note">${pct===100?"Perfect. Try the next task.":"Try again: the phrases will be shuffled."}</p><div class="row" style="justify-content:center"><button class="btn" id="again">Try again</button><button class="btn ghost" id="cs">Cheat sheet</button></div></div>`;
+  $("#again").onclick=()=>go(mode);$("#cs").onclick=()=>go("cards");return}
+ let m=mode;if(m==="mix"){const o=["extra","pick","type"];if(q[i].e.split(" ").length>=5)o.push("order","order");m=o[Math.random()*o.length|0]}
+ ({order,extra,pick,type})[m](q[i])}
+
+function order(p){const tk=p.e.split(" "),pool=sh(tk.map((w,k)=>({w,k}))),ans=[];
+ st.innerHTML=head()+`<p class="task">Put the words in the right order</p><p class="ru">${p.r}</p><div class="ans" id="ans"></div><div class="pool" id="pool"></div><div class="row"><button class="btn" id="chk">Check</button><button class="btn ghost" id="rst">Reset</button></div>`+foot();
+ const draw=()=>{$("#ans").innerHTML="";ans.forEach(a=>{const b=el(`<button class="t">${a.w}</button>`);b.onclick=()=>{if(done)return;ans.splice(ans.indexOf(a),1);draw()};$("#ans").append(b)});
+  $("#pool").innerHTML="";pool.forEach(a=>{const b=el(`<button class="t${ans.includes(a)?" used":""}">${a.w}</button>`);b.onclick=()=>{if(!done){ans.push(a);draw()}};$("#pool").append(b)})};
+ draw();$("#rst").onclick=()=>{if(!done){ans.length=0;draw()}};
+ $("#chk").onclick=()=>{if(done||!ans.length)return;const ok=nrm(ans.map(a=>a.w).join(" "))===nrm(p.e);
+  if(!ok)$("#ans").classList.add("shake");$("#ans").querySelectorAll(".t").forEach(t=>t.classList.add(ok?"ok":"bad"));fb(ok,"Not quite. The right order is:",p.e)};
+ wire()}
+
+function extra(p){const tk=p.e.split(" "),[pos,w]=p.x;tk.splice(pos,0,w);
+ st.innerHTML=head()+`<p class="task">There is one extra word in this phrase. Tap it.</p><p class="ru">${p.r}</p><div class="sent" id="s"></div>`+foot();
+ tk.forEach((t,k)=>{const b=el(`<button class="t">${t}</button>`);b.onclick=()=>{if(done)return;const ok=k===pos;
+  b.classList.add(ok?"ok":"bad");if(!ok)$("#s").children[pos].classList.add("ok");fb(ok,"The extra word is “"+w+"”. Correct phrase:",p.e)};$("#s").append(b)});wire()}
+
+function pick(p){const o=sh([p.e,...p.w]);
+ st.innerHTML=head()+`<p class="task">Choose the correct phrase</p><p class="ru">${p.r}</p><div id="o"></div>`+foot();
+ o.forEach(t=>{const b=el(`<button class="t opt">${t}</button>`);b.onclick=()=>{if(done)return;const ok=t===p.e;
+  $("#o").querySelectorAll(".t").forEach(x=>{if(x.textContent===p.e)x.classList.add("ok")});if(!ok)b.classList.add("bad");fb(ok,"Not that one. Correct phrase:",p.e)};$("#o").append(b)});wire()}
+
+function type(p){const hint=p.e.split(" ").map(w=>w[0]+"…").join(" ");
+ st.innerHTML=head()+`<p class="task">Type the phrase</p><p class="ru">${p.r}</p><input type="text" id="in" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Your answer"><div class="row"><button class="btn" id="chk">Check</button><button class="btn ghost" id="h">Hint</button></div><p class="note" id="hint"></p>`+foot();
+ const inp=$("#in");inp.focus();
+ $("#h").onclick=()=>{$("#hint").textContent=hint};
+ const check=()=>{if(done||!inp.value.trim())return;const ok=nrm(inp.value)===nrm(p.e);inp.disabled=true;fb(ok,"Almost. Compare with the correct phrase:",p.e)};
+ $("#chk").onclick=check;inp.onkeydown=e=>{if(e.key==="Enter")check()};wire()}
+
+go("cards");
+</script>
+</body>
+</html>
