@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Operation: Museum Info</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b0f17;--card:#121a27;--ink:#e8f1ff;--mut:#8aa0bd;--cy:#2de2ff;--or:#ffb020;--ok:#38f28a;--bad:#ff4d5e;--line:#243349;--hf:Orbitron,"Arial Black",system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:19px/1.4 Rajdhani,system-ui,sans-serif;font-weight:500;background:radial-gradient(900px 500px at 80% -10%,#12324a55,transparent),linear-gradient(var(--bg),var(--bg));min-height:100%}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 3px,#00000022 3px 4px);z-index:50}
+main{max-width:760px;margin:0 auto;padding:14px 14px 70px}
+h1{font:800 24px var(--hf);margin:6px 0 2px;letter-spacing:.04em;color:var(--cy);text-shadow:2px 0 var(--bad),-2px 0 var(--or);animation:gl 4s infinite}
+@keyframes gl{0%,92%,100%{text-shadow:2px 0 #ff4d5e55,-2px 0 #ffb02055}94%{text-shadow:-4px 0 var(--bad),4px 0 var(--cy)}}
+.sub{color:var(--mut);margin:4px 0 10px;font-size:17px}
+.hud{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#0b0f17ee;border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;margin:8px 0}
+.hud b{font:700 20px var(--hf);color:var(--or)}.hud small{color:var(--mut);font-size:13px;letter-spacing:.1em;display:block}
+.mag{display:flex;gap:3px;flex-wrap:wrap;flex:1 1 140px}
+.mag i{width:9px;height:18px;border-radius:2px 2px 1px 1px;background:linear-gradient(var(--or),#b36b00);transition:.3s}
+.mag i.spent{background:#243349;transform:translateY(3px)}
+.mag i.fired{animation:fr .4s}@keyframes fr{0%{background:#fff;transform:translateY(-8px) scale(1.4)}}
+.mute{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:2px 8px;font:inherit;cursor:pointer}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
+.tab{flex:1 0 auto;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:8px;padding:7px 12px;font:700 14px var(--hf);cursor:pointer;white-space:nowrap}
+.tab.on{color:#001018;background:var(--cy);border-color:var(--cy);box-shadow:0 0 14px #2de2ff77}
+.tab.fin{border-color:var(--ok);color:var(--ok)}.tab.on.fin{color:#001a0d;background:var(--ok)}
+section{display:none}section.on{display:block}
+.intel{background:var(--card);border:1px dashed var(--cy);border-radius:10px;padding:8px 12px;font-size:16px;margin-bottom:10px}
+.intel summary{cursor:pointer;color:var(--cy);font:700 13px var(--hf)}.intel b{color:var(--or)}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cy);border-radius:10px;padding:12px 14px;margin-bottom:12px;position:relative}
+.card h3{margin:0 0 4px;font:700 12px var(--hf);color:var(--mut);letter-spacing:.08em}
+.q{margin:0 0 8px;font-weight:700}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:9px 12px;border:1.5px solid var(--line);background:#0c1420;color:var(--ink);border-radius:8px;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--cy)}
+.opt.ok{background:#0e3a24;border-color:var(--ok)}.opt.bad{background:#3b1119;border-color:var(--bad);color:#ff9aa5}
+.fb{font-size:16px;margin-top:6px;color:var(--mut);min-height:1em}
+.zone{min-height:46px;border:1.5px dashed var(--line);border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tile{border:1.5px solid var(--or);background:#2a1d05;color:var(--or);border-radius:6px;padding:5px 12px;font:700 18px Rajdhani,sans-serif;cursor:pointer}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn{border:0;background:var(--or);color:#1a1000;border-radius:8px;padding:9px 16px;font:800 14px var(--hf);cursor:pointer;letter-spacing:.05em}
+.btn.g{background:transparent;color:var(--cy);border:1.5px solid var(--cy)}
+input.gap{font:700 19px Rajdhani,sans-serif;width:10ch;border:0;border-bottom:2px solid var(--cy);background:#0c1420;color:var(--ink);padding:2px 6px;text-align:center;border-radius:4px 4px 0 0}
+input.gap.ok,textarea.ok{border-color:var(--ok);background:#0e3a24}input.gap.bad,textarea.bad{border-color:var(--bad);background:#3b1119}
+.rc{background:#17263a;border-radius:10px 10px 10px 2px;padding:6px 12px;margin:0 0 6px;max-width:88%}
+.rc b{display:block;font:700 11px var(--hf);color:var(--cy)}
+.goal{font-size:16px;color:var(--mut);margin:0 0 4px}
+textarea{width:100%;font:inherit;border:1.5px solid var(--or);background:#0c1420;color:var(--ink);border-radius:10px 10px 2px 10px;padding:8px 12px;resize:vertical;min-height:48px}
+.shot{animation:shot .5s}@keyframes shot{0%{box-shadow:0 0 0 2px #fff,0 0 40px 12px var(--or);filter:brightness(2)}100%{box-shadow:none;filter:none}}
+.hurt{animation:hurt .4s}@keyframes hurt{0%,100%{transform:none}20%{transform:translateX(-8px);box-shadow:0 0 24px var(--bad)}60%{transform:translateX(8px)}}
+.kick{animation:kick .18s}@keyframes kick{30%{transform:translateY(4px)}}
+.pop{position:fixed;transform:translate(-50%,0);font:800 22px var(--hf);pointer-events:none;z-index:60;animation:up 1s forwards}
+.pop.good{color:var(--or);text-shadow:0 0 12px var(--or)}.pop.bad{color:var(--bad);text-shadow:0 0 12px var(--bad)}
+@keyframes up{to{transform:translate(-50%,-60px);opacity:0}}
+.ov{position:fixed;inset:0;z-index:100;background:#05080ef0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.ov h2{font:800 24px var(--hf);color:var(--cy);margin:0;animation:bl .5s infinite alternate}.ov.done h2{color:var(--ok);animation:none}
+@keyframes bl{to{opacity:.4}}
+.mg{width:64px;height:90px;border:3px solid var(--cy);border-radius:6px 6px 14px 14px;display:grid;gap:4px;padding:6px;animation:ins .9s ease-out}
+.mg i{background:var(--or);border-radius:3px}@keyframes ins{from{transform:translateY(160px);opacity:0}}
+.rb{width:220px;height:10px;border:1px solid var(--cy);border-radius:6px;overflow:hidden}.rb b{display:block;height:100%;width:0;background:var(--cy);animation:fl 1.3s linear forwards}@keyframes fl{to{width:100%}}
+.ov p{margin:0;font:700 22px var(--hf);color:var(--or)}
+.res{border:2px solid var(--cy);border-radius:14px;padding:16px;background:linear-gradient(160deg,#10253a,#0b0f17);box-shadow:0 0 30px #2de2ff33}
+.res h2{font:800 18px var(--hf);margin:0 0 8px;color:var(--cy);letter-spacing:.1em}
+.rk{font:800 84px/1 var(--hf);color:var(--or);text-shadow:0 0 24px var(--or);text-align:center}
+.big{font:800 36px var(--hf);text-align:center;color:var(--ok)}
+.st{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0}.st span:last-child{font-family:var(--hf);font-size:15px}
+#nm{width:100%;background:#0c1420;border:1.5px solid var(--cy);color:var(--ink);border-radius:8px;padding:8px 12px;font:700 20px Rajdhani,sans-serif;margin-bottom:10px;text-align:center}
+.rules{border:1px solid var(--cy);border-radius:12px;background:var(--card);padding:14px;margin:12px 0}.rules h2{font:700 16px var(--hf);color:var(--cy);margin:0 0 8px}.rules ul{margin:8px 0;padding-left:24px}.rules strong{color:var(--or)}.scorebtn{border:1px solid var(--or);background:#2a1d05;color:var(--or);border-radius:8px;padding:8px 12px;font:700 13px var(--hf);cursor:pointer}.score-note{color:var(--mut);font-size:15px;margin:8px 0}.rules[hidden]{display:none}.score-progress{height:9px;background:var(--line);border-radius:9px;overflow:hidden;margin:12px 0}.score-progress b{display:block;height:100%;background:var(--cy)}
+</style></head><body><main>
+<h1>OPERATION: MUSEUM INFO</h1>
+<p class="sub">Complete 4 missions. Earn XP and complete all four missions.</p>
+<div class="rules" id="rules" lang="ru"><h2>HOW TO EARN XP</h2><p>Пройди 4 миссии (47 заданий) и заработай как можно больше баллов!</p><ul><li>Правильный ответ с первой попытки — <strong>100 XP</strong>.</li><li>За серию правильных ответов с первой попытки: 125, 150, 175, затем 200 XP за каждый следующий ответ.</li><li>Правильный ответ после ошибки — <strong>25 XP</strong>. Ошибка обнуляет серию, но не отнимает баллы.</li><li>REVEAL (показать ответ) — 0 XP за задание.</li><li>За завершение каждой миссии — <strong>+200 XP</strong>.</li></ul><p>Общий итог появится в конце игры. В любой момент нажми <strong>SCORE</strong>, чтобы посмотреть текущие баллы. После всех миссий сделай скриншот результата и отправь учителю.</p><button class="btn" id="start">START MISSION</button></div><div class="hud"><div><small>XP</small><b id="xp">0</b></div><div><small>COMBO</small><b id="cb">x0</b></div><div class="mag" id="mag"></div><button class="scorebtn" id="score">★ SCORE</button><button class="mute" id="mute">🔇</button></div>
+<p class="score-note">Общий счёт — в конце игры. Текущие баллы всегда доступны в SCORE.</p><div class="tabs" id="tabs"></div>
+<details class="intel"><summary>▸ INTEL: KEY PHRASES</summary><b>Asking:</b> What time does it open? · How much does it cost? · How can I get there? · Is there a café?<br><b>Checking:</b> Do you mean … ? · Is that … ? · Did you say … ?<br><b>Repeat:</b> I’m sorry? · Sorry, I didn’t get that. · Could you repeat that, please? · Could you say that again?</details>
+<section id="s0"></section><section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
+</main>
+<script>
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim();
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const $=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const G=id=>document.getElementById(id);
+const M=[["MISSION 1","TARGET LOCK",12],["MISSION 2","ASSEMBLE",7],["MISSION 3","FILL THE MAG",21],["MISSION 4","FINAL BOSS",7]].map(a=>({n1:a[0],t:a[1],n:a[2],done:0,xp:0,first:0}));
+const TOT=M.reduce((a,m)=>a+m.n,0);
+let xp=0,combo=0,best=0,cur=0,mute=true,AC;
+function sfx(f,d=.08,ty='square',v=.05){if(mute)return;try{AC=AC||new AudioContext();const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+G('mute').onclick=e=>{mute=!mute;e.target.textContent=mute?'🔇':'🔊';sfx(600)};
+const fx=(el,c)=>{el.classList.remove(c);void el.offsetWidth;el.classList.add(c)};
+function pop(el,txt,c){const r=el.getBoundingClientRect(),p=$('div','pop '+c,txt);p.style.left=Math.max(70,Math.min(innerWidth-70,r.left+r.width/2))+'px';p.style.top=Math.max(110,Math.min(innerHeight-90,r.top+Math.min(r.height/2,70)))+'px';document.body.append(p);setTimeout(()=>p.remove(),1000)}
+function hud(){G('xp').textContent=xp;G('cb').textContent='x'+combo;const mg=G('mag');
+if(cur<4){const m=M[cur],l=m.n-m.done;mg.innerHTML='';for(let i=0;i<m.n;i++)mg.append($('i',i>=l?'spent':''))}else mg.innerHTML='<small>MISSIONS '+M.filter(m=>m.done==m.n).length+'/4 COMPLETE</small>';
+document.querySelectorAll('.tab').forEach((t,i)=>{if(i<4){t.classList.toggle('fin',M[i].done==M[i].n);t.querySelector('span').textContent=M[i].done+'/'+M[i].n}})}
+function hit(k,el,mode){let g=0;if(mode=='first'){g=100+Math.min(combo,4)*25;combo++;best=Math.max(best,combo);M[k].first++}else if(mode=='retry'){g=25;combo=0}else combo=0;
+xp+=g;M[k].xp+=g;M[k].done++;hud();
+if(mode!='skip'){fx(el,'shot');fx(document.querySelector('main'),'kick');sfx(170,.12,'sawtooth',.08);sfx(1100,.04);pop(el,'+'+g+' XP'+(combo>1?'  x'+combo:''),'good');const b=G('mag').children[M[k].n-M[k].done];if(b&&cur==k)fx(b,'fired')}
+if(M[k].done==M[k].n){xp+=200;M[k].xp+=200;hud();setTimeout(()=>reload(k),600)}}
+function miss(el){combo=0;fx(el,'hurt');pop(el,'MISS','bad');sfx(90,.25,'sawtooth',.06);hud()}
+function reload(k){hud();if(cur===4){results();return;}const o=$('div','ov','<div class="mg"><i></i><i></i><i></i></div><h2>RELOADING…</h2><div class="rb"><b></b></div><p></p>');document.body.append(o);
+sfx(300,.1);setTimeout(()=>sfx(520,.1),500);setTimeout(()=>{sfx(700,.12);o.classList.add('done');o.querySelector('h2').textContent=M[k].n1+' COMPLETE';o.querySelector('p').textContent='+200 XP BONUS'},1400);
+setTimeout(()=>{o.remove();const nx=M.findIndex(m=>m.done<m.n);if(cur!==4)go(nx<0?4:nx);else results()},3000)}
+const tabs=G('tabs');
+M.forEach((m,i)=>tabs.append($('button','tab',(i+1)+' '+m.t+' <span></span>')));tabs.append($('button','tab','★ SCORE'));
+let returnMission=0;
+function go(i){if(i===4&&cur<4)returnMission=cur;cur=i;document.querySelectorAll('.tab').forEach((x,j)=>x.classList.toggle('on',j==i));document.querySelectorAll('section').forEach((x,j)=>x.classList.toggle('on',j==i));if(i==4)results();hud();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.tab').forEach((t,i)=>t.onclick=()=>go(i));
+G('score').onclick=()=>go(4);G('start').onclick=()=>{G('rules').hidden=true;go(0)};
+const sub=t=>$('p','sub',t);
+
+/* MISSION 1 */
+const mc=[
+["You want to know the opening time.","What time does it open?","What time it opens?","When opens it?","Вопрос с does: What time does it open?"],
+["You didn’t hear what the person said.","Sorry, I didn’t get that.","Sorry, I don’t got that.","Sorry, I didn’t got that.","После didn’t глагол без -ed: didn’t get."],
+["You want to know the price.","How much does it cost?","How much it costs?","How many does it cost?","How much — для цены; вопрос с does + cost."],
+["You want to check you heard ‘twelve pounds fifty’.","Did you say ‘twelve pounds fifty’?","Did you said ‘twelve pounds fifty’?","Do you said ‘twelve pounds fifty’?","Did + you + say (без -ed)."],
+["You want to know the way there.","How can I get there?","How I can get there?","How can I to get there?","Порядок: How + can + I + get. После can нет to."],
+["You want the person to say it one more time.","Could you say that again?","Could you saying that again?","Can you says that again?","Could you + глагол без изменений."]];
+const mc2=[
+["Choose Karen’s reply.","Hello. I’d like some information about the museum. What time does it open?","Hello. I’d like some information about the museum. What time open it?","Hello. I’d like some information about the museum. What time does it opens?","Нужен вопрос с does: What time does it open? После does глагол без -s.","Good morning. How can I help?"],
+["Choose Karen’s reply.","Sorry, I didn’t get that. Could you say that again?","Sorry, I didn’t got that. Could you say that again?","Sorry, I don’t get that. Could you saying that again?","Didn’t + get; could you + say (без -ing).","It’s open from half past ten to half past three."],
+["Choose Karen’s reply.","Did you say ‘twelve pounds fifty’?","Did you said ‘twelve pounds fifty’?","Did say you ‘twelve pounds fifty’?","Did + you + say: порядок как в вопросе, say без -ed.","Twelve fifty."],
+["Choose Karen’s reply.","OK, and how can I get there?","OK, and how I can get there?","OK, and how can I to get there?","How + can + I + get. После can нет to.","Yes, twelve pounds fifty."],
+["Choose Karen’s reply.","Could you repeat that, please?","Could you repeating that, please?","Can you repeats that, please?","Could you + repeat: глагол без изменений.","Take the number 3 bus from the station."],
+["Choose Karen’s reply.","OK, thank you for your help. Goodbye.","OK, thanks you for your help. Goodbye.","OK, thank you for help your. Goodbye.","Thank you for your help — устойчивая фраза.","Take the number 3 bus from the station to the museum."]];
+(()=>{const s=G('s0');s.append(sub('PART 1 · Choose the correct line.'));
+[...mc,...mc2].forEach((m,i)=>{const c=$('div','card');if(i==mc.length)s.append(sub('PART 2 · Dialogue: choose the correct reply for Karen.'));
+if(m[5]){c.append($('div','rc','<b>RECEPTIONIST</b>'+m[5]));c.append($('h3','','DIALOGUE '+(i+1-mc.length)+' — '+m[0]))}else c.append($('h3','','TARGET '+(i+1)+' — '+m[0]));
+c.append($('p','q',m[5]?'Karen:':'Choose the correct line:'));const fb=$('div','fb');let first=true,done=false;
+shuf([m[1],m[2],m[3]]).forEach(o=>{const b=$('button','opt',o);b.onclick=()=>{if(done||b.disabled)return;
+if(o===m[1]){b.classList.add('ok');done=true;fb.textContent='✓ '+m[4];hit(0,c,first?'first':'retry')}else{b.classList.add('bad');b.disabled=true;first=false;fb.textContent='✗ Try again.';miss(c)}};c.append(b)});
+c.append(fb);s.append(c)})})();
+
+/* MISSION 2 */
+const ord=[["does","What","it","open","time"],["How","cost","much","it","does"],["can","I","How","there","get"],["you","Did","say","twelve","pounds","fifty"],["that","you","Could","again","say"],["there","Is","a","café"],["Could","repeat","please","you","that"]];
+const ordAns=["What time does it open?","How much does it cost?","How can I get there?","Did you say twelve pounds fifty?","Could you say that again?","Is there a café?","Could you repeat that, please?"];
+(()=>{const s=G('s1');s.append(sub('Tap the words in the right order to build the question.'));
+ord.forEach((w,i)=>{const c=$('div','card');c.append($('h3','','WEAPON PART '+(i+1)));
+const zone=$('div','zone'),pool=$('div','zone');pool.style.border='0';const fb=$('div','fb');let solved=false,first=true;
+const mk=t=>{const b=$('button','tile',t);b.onclick=()=>{if(solved)return;(b.parentNode===pool?zone:pool).append(b);fb.textContent=''};return b};
+shuf(w).forEach(t=>pool.append(mk(t)));
+const chk=$('button','btn','FIRE'),rs=$('button','btn g','RESET');
+chk.onclick=()=>{if(solved||!zone.children.length)return;const got=norm([...zone.children].map(x=>x.textContent).join(' '));
+if(got===norm(ordAns[i])){solved=true;zone.style.borderColor='var(--ok)';fb.textContent='✓ '+ordAns[i];hit(1,c,first?'first':'retry')}
+else{first=false;fb.textContent='✗ Not quite. Order: question word → do/does/did/can/could → subject → verb.';miss(c)}};
+rs.onclick=()=>{if(solved)return;[...zone.children].forEach(x=>pool.append(x));fb.textContent=''};
+const row=$('div','row');row.append(chk,rs);c.append(zone,pool,row,fb);s.append(c)})})();
+
+/* MISSION 3 */
+const fill=[
+["What ___ does it open?",["time"]],["How ___ does it cost?",["much"]],["How can I ___ there?",["get"]],["Did you ___ ‘twelve pounds fifty’?",["say"]],
+["Could you ___ that, please?",["repeat","say"]],["Do you ___ ten thirty to three thirty?",["mean"]],["___ there a café?",["is"]],["Sorry, I ___ get that.",["didn't","did not"]],
+["What time ___ it open?",["does"]],["How much does it ___?",["cost"]],["How can ___ get there?",["i"]],["Did ___ say ‘twelve pounds fifty’?",["you"]],
+["___ you repeat that, please?",["could"]],["Could you say that ___?",["again"]],["I’m ___?",["sorry"]],["Is there a ___?",["café","cafe"]],
+["Could you repeat that, ___?",["please"]],["How can I get ___?",["there"]],["___ much does it cost?",["how"]],["Could you ___ that again?",["say"]],["Is ___ twelve pounds fifty?",["that"]]];
+(()=>{const s=G('s2');const items=[];s.append(sub('Type the missing word in each sentence. Press FIRE to check.'));
+shuf(fill).forEach((f,i)=>{const c=$('div','card');const p=$('p','q','');const [a,b]=f[0].split('___');p.append(a);const inp=$('input','gap');inp.autocomplete='off';inp.autocapitalize='off';inp.spellcheck=false;p.append(inp,b);
+const fb=$('div','fb');c.append($('h3','','MAG SLOT '+(i+1)),p,fb);s.append(c);const it={f,inp,fb,c,ok:false,first:true};items.push(it);
+inp.onkeydown=e=>{if(e.key=='Enter')try1(it)}});
+function try1(it){if(it.ok||!it.inp.value.trim())return;
+if(it.f[1].map(norm).includes(norm(it.inp.value))){it.ok=true;it.inp.className='gap ok';it.inp.disabled=true;it.fb.textContent='✓';hit(2,it.c,it.first?'first':'retry')}
+else{it.first=false;it.inp.className='gap bad';it.fb.textContent='✗ Wrong. Try again.';miss(it.c)}}
+const row=$('div','row');const chk=$('button','btn','FIRE! (CHECK ALL)');chk.onclick=()=>items.forEach(try1);row.append(chk);s.append(row)})();
+
+/* MISSION 4 */
+const dlg=[
+["Good morning. How can I help?","Say hello and ask what time the Castle Museum opens.",/what time does (it|the (castle )?museum) open/,"Hello. I’d like some information about the museum. What time does it open?"],
+["It’s open from nine to five.","You didn’t hear. Ask the person to repeat.",/(sorry|repeat|again|didn'?t get|did not get)/,"I’m sorry? / Could you say that again?"],
+["Nine to five, every day.","Ask about the price.",/how much does .+ cost/,"And how much does it cost?"],
+["Eight pounds.","Check: you think you heard ‘eight pounds’.",/(did you say|do you mean|is that)/,"Did you say ‘eight pounds’?"],
+["Yes, eight pounds.","Ask how to get there.",/how (can|do) i get/,"OK, and how can I get there?"],
+["Take the number 5 bus from the station.","You didn’t catch it. Politely ask them to repeat.",/(could you (repeat|say)|sorry|didn'?t get)/,"Could you repeat that, please?"],
+["Take the number 5 bus from the station to the museum.","Thank them and say goodbye.",/thank/,"OK, thank you for your help. Goodbye."]];
+(()=>{const s=G('s3');s.append(sub('Write Karen’s lines in English. Use the key phrases. Any correct answer counts.'));
+dlg.forEach((d,i)=>{const c=$('div','card');const r=$('div','rc','<b>RECEPTIONIST</b>'+d[0]);const g=$('p','goal','Karen — '+d[1]);
+const t=$('textarea');t.rows=2;t.placeholder='Write your line…';const fb=$('div','fb');let ok=false,first=true;
+const chk=$('button','btn','FIRE'),m=$('button','btn g','REVEAL (0 XP)');
+chk.onclick=()=>{if(ok||!t.value.trim())return;if(d[2].test(norm(t.value))){ok=true;t.className='ok';t.disabled=true;fb.textContent='✓ Also possible: '+d[3];hit(3,c,first?'first':'retry')}
+else{first=false;t.className='bad';fb.textContent='✗ Check the structure: helper verb + subject + verb.';miss(c)}};
+m.onclick=()=>{if(ok)return;ok=true;t.disabled=true;fb.textContent='Model: '+d[3];hit(3,c,'skip')};
+const row=$('div','row');row.append(chk,m);c.append(r,g,t,row,fb);s.append(c)})})();
+
+/* RESULTS */
+const nm=$('input');nm.id='nm';nm.placeholder='YOUR CALLSIGN';nm.maxLength=24;
+function results(){const s=G('s4');s.innerHTML='';const completed=M.reduce((a,m)=>a+m.done,0),all=M.every(m=>m.done==m.n),fr=M.reduce((a,m)=>a+m.first,0),acc=(completed?Math.round(100*fr/completed):0),rank=!all?'?':acc>=90?'S':acc>=75?'A':acc>=60?'B':'C';
+const r=$('div','res');r.append($('h2','',all?'MISSION REPORT — COMPLETE':'MISSION REPORT — IN PROGRESS'),nm,$('div','rk',rank),$('div','big',xp+' XP'));
+r.append($('div','score-progress','<b style="width:'+100*completed/TOT+'%"></b>'));
+const rows=[['TASKS COMPLETED',completed+'/'+TOT],['ACCURACY (FIRST TRY)',acc+'%'],['BEST COMBO','x'+best],...M.map(m=>[m.n1+' · '+m.t,(m.done==m.n?'✓ ':m.done+'/'+m.n+' ')+m.xp+' XP']),['DATE',new Date().toLocaleDateString('en-GB')]];
+rows.forEach(a=>r.append($('div','st','<span>'+a[0]+'</span><span>'+a[1]+'</span>')));s.append(r,sub(all?'Все миссии завершены! Сделай скриншот результата и отправь учителю.':'Это промежуточный счёт. Продолжай выполнять задания — общий итог появится в конце игры.'));const back=$('button','btn',all?'BACK TO MISSIONS':'CONTINUE MISSION');back.onclick=()=>go(returnMission);s.append(back)}
+go(0);
+</script></body></html>
