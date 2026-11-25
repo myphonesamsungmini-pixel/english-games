@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 7 Test: Transport, Travel & Past Simple</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fff8ec;--card:#fff;--tx:#2b2540;--mut:#7a7390;--ok:#1fa968;--bad:#e5484d;--bd:#eadfcb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a2b;--card:#27243b;--tx:#f3efff;--mut:#a9a2c4;--bd:#3b3757}}
+:root[data-theme="dark"]{--bg:#1c1a2b;--card:#27243b;--tx:#f3efff;--mut:#a9a2c4;--bd:#3b3757}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:18px/1.7 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+header{padding:18px 14px 8px;text-align:center;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+h1{margin:0;font-size:clamp(22px,5vw,34px);background:linear-gradient(90deg,#ff5e8a,#ff9f1c,#2ec4b6,#6c5ce7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar{max-width:460px;margin:8px auto 0;height:14px;border-radius:9px;background:var(--bd);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2ec4b6,#ff9f1c,#ff5e8a);transition:width .4s}
+#pt{font-size:14px;color:var(--mut)}
+main{max-width:760px;margin:0 auto;padding:6px 12px 50px}
+.name{display:flex;gap:8px;align-items:center;justify-content:center;margin:6px 0 14px;flex-wrap:wrap}
+input,select{font:inherit;font-size:17px;color:var(--tx);background:var(--bg);border:3px dashed var(--c,#6c5ce7);border-radius:12px;padding:0 8px;margin:2px;max-width:100%}
+input:focus,select:focus{outline:none;border-style:solid;transform:scale(1.04)}
+input.f,select.f{border-style:solid}
+.sec{background:var(--card);border:3px solid var(--c);border-radius:22px;padding:14px 16px;margin:16px 0;box-shadow:0 6px 0 var(--c)}
+h2{margin:0;color:var(--c);font-size:22px}
+.hint{color:var(--mut);font-size:15px;margin:2px 0 8px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;padding:8px;border-radius:14px;background:color-mix(in srgb,var(--c) 14%,transparent)}
+.bank span{background:var(--c);color:#fff;border-radius:14px;padding:1px 12px;font-size:17px}
+.bank s{opacity:.6}
+.ex{background:color-mix(in srgb,var(--c) 10%,transparent);border-radius:12px;padding:4px 10px;margin:6px 0;font-size:16px}
+.blk{padding:6px 0;border-bottom:1px dashed var(--bd)}
+.blk:last-child{border:0}
+.nb{display:inline-block;min-width:22px;height:22px;line-height:22px;border-radius:50%;background:var(--c);color:#fff;font-size:13px;text-align:center;margin:0 2px;vertical-align:middle}
+.nb{background:none;font-size:22px;min-width:0;height:auto;line-height:1;margin:0 3px 0 0}
+.drop{width:140px;text-align:center;cursor:pointer;font-weight:700}
+.drop.hot{background:#ffd93d66;transform:scale(1.1)}
+.chip{display:inline-block;background:var(--c);color:#fff;border-radius:14px;padding:1px 14px;font-size:17px;margin:3px;box-shadow:0 3px 0 rgba(0,0,0,.25);user-select:none;touch-action:none;cursor:grab}
+.chip.sel{outline:4px solid #ffd93d}.chip.used{opacity:.3}
+.chip.fl{position:fixed;z-index:30;pointer-events:none;transform:translate(-50%,-50%) scale(1.15)}
+.exchip{border:2px dashed var(--mut);color:var(--mut);border-radius:14px;padding:1px 12px;font-size:15px;font-style:normal;margin:3px}
+.rem{border:3px solid #ff9f1c;border-radius:20px;padding:12px 14px;margin:18px 0;background:var(--card)}
+.rc{padding:8px 0;border-bottom:1px dashed var(--bd)}
+.tip{font-size:15px;background:color-mix(in srgb,#2ec4b6 15%,transparent);border-radius:10px;padding:4px 10px;margin:4px 0}
+.ok{border-color:var(--ok)!important;background:color-mix(in srgb,var(--ok) 20%,var(--bg))!important}
+.no{border-color:var(--bad)!important;background:color-mix(in srgb,var(--bad) 18%,var(--bg))!important}
+.fix{color:var(--ok);font-size:14px;font-style:normal;font-weight:700;margin-left:2px}
+.pop{animation:pop .35s}@keyframes pop{50%{transform:scale(1.2)}}
+.btns{text-align:center;margin:20px 0}
+button{font:inherit;font-weight:700;border:0;border-radius:22px;padding:8px 26px;color:#fff;background:linear-gradient(90deg,#ff5e8a,#ff9f1c);box-shadow:0 5px 0 rgba(0,0,0,.25);cursor:pointer}
+button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+button.g{background:#6c5ce7}
+#res{display:none;border:4px solid #6c5ce7;border-radius:26px;background:var(--card);padding:18px;text-align:center;box-shadow:0 8px 0 #6c5ce7}
+#res.on{display:block;animation:pop .6s}
+.big{font-size:56px;font-weight:800;line-height:1.1;background:linear-gradient(90deg,#ff5e8a,#ff9f1c,#2ec4b6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{display:flex;align-items:center;gap:8px;margin:5px 0;text-align:left;font-size:16px}
+.row .t{flex:0 0 150px}.row .b{flex:1;height:12px;border-radius:7px;background:var(--bd);overflow:hidden}
+.row .b i{display:block;height:100%}.row .n{flex:0 0 46px;text-align:right;font-weight:700}
+.lvl{font-size:22px;font-weight:800;margin:6px 0}
+.adv{text-align:left;font-size:16px;background:color-mix(in srgb,#ff9f1c 15%,transparent);border-radius:14px;padding:8px 14px;margin-top:10px}
+#cv{position:fixed;inset:0;pointer-events:none;z-index:20}
+</style></head><body>
+<canvas id="cv"></canvas>
+<header><h1>🌍 Unit 7 Test: Travel & Past Simple ✈️</h1>
+<div class="bar"><i id="pb"></i></div><div id="pt">0 / 0</div></header>
+<main>
+<div class="name">👤 <b>Name:</b> <input id="nm" placeholder="Your name" style="--c:#ff5e8a;min-width:200px"></div>
+<div id="secs"></div>
+<div class="btns"><button id="chk">🏁 Показать итоги</button> <button class="g" id="rst">🔄 Заново</button></div>
+<div id="res"></div>
+<div id="fix"></div>
+</main>
+<script>
+const SECS=[
+{n:"Vocabulary 1",e:"🚌",c:"#ff5e8a",max:6,topic:"транспорт (go by / on foot / take / leave / arrive)",
+h:"Заполни пропуски в тексте словами из рамки. 👆 Перетащи слово в пропуск (на телефоне: нажми на слово, затем на пропуск). Слово bike — пример, его брать не нужно.",
+bank:"arrive leaves motorbike on takes underground",ex:"I love cycling and I go to school by <u>bike</u>.",
+t:"My best friend goes {|*} foot. I usually {|*} at school before he does. Mum {|*} a bus to work. She {|*} home ten past eight in the morning. Dad travels to work by {|*}. He likes it because he can read his newspaper then. My big sister goes everywhere by {|*}. She loves riding it!",
+a:[["on"],["arrive"],["takes"],["leaves"],["underground"],["motorbike"]]},
+{n:"Vocabulary 2",e:"🦘",c:"#ff9f1c",max:6,topic:"слова про путешествия (hotel, sunglasses, suitcase, souvenirs…)",
+h:"Заполни пропуски в письме про отпуск в Австралии 🦘. Первые буквы слов даны в подсказке внутри поля. Слово guidebook — пример.",
+t:"Hi Felicity,<br>Guess what! We’re back home! We had a FANTASTIC holiday in Australia! Dad bought a <u>guidebook</u> and we went {s} in Sydney. We stayed in a great {h}. I bought {s} – it was very sunny! Then we went camping in the Blue Mountains, so we took our {s b}. My {s} was heavy when we came back because I bought a lot of {s}. The toy kangaroo is for you! And I’ve got a lot of photos to show you!!<br>See you soon. Cassandra",
+a:[["sightseeing"],["hotel"],["sunglasses"],["sleeping bags"],["suitcase"],["souvenirs"]]},
+{n:"Grammar 1",e:"📝",c:"#2ec4b6",max:5,topic:"Past Simple: отрицание (didn’t + глагол) и утверждение (had, went…)",
+h:"Впиши глаголы в скобках в Past Simple (в нужной форме: утвердительной или отрицательной). Первое предложение — пример.",
+t:"Dad and Aunt Cindy <u>didn’t have</u> (not have) holidays like us when they were children. They {} (not take) a lot of photos. Dad {} (not watch) TV and Aunt Cindy {} (not surf) the Internet. Dad says: ‘We {} (not use) technology but we {} (have) a lot of fun.’",
+a:[["didn't take","did not take"],["didn't watch","did not watch"],["didn't surf","did not surf"],["didn't use","did not use"],["had"]]},
+{n:"Grammar 2",e:"💬",c:"#6c5ce7",max:4,topic:"Past Simple: вопросы и краткие ответы (Did + подлежащее + глагол / Yes, he did)",
+h:"Напиши вопросы и краткие ответы по образцу. Первый диалог — пример.",
+ex:"A: I bought some new clothes yesterday.<br>B: <u>Did you buy</u> a dress?<br>A: No, <u>I didn’t</u>. I bought a hoodie.",
+b:["A: Thomas ate lunch at this café yesterday.<br>B: {} a sandwich?<br>B: Yes, {}.","A: Mum and Dad cooked dinner last night.<br>B: {} pasta?<br>A: No, {}. They cooked pizza."],
+a:[["did he eat"],["he did"],["did they cook"],["they didn't","they did not"]]},
+{n:"Grammar 3",e:"❓",c:"#e5484d",max:4,topic:"вопросительные слова с did (Where / How / When did you…?)",
+h:"Допиши вопросы (вопросительное слово или Did + подлежащее + глагол). Первый диалог — пример.",
+ex:"A: <u>Did you have fun</u> on your holiday?<br>B: Yes, we had a lot of fun.",
+b:["A: Where did {}?<br>B: We went to Spain.","A: How did {} there?<br>B: We travelled there by plane.","A: Did {} Granada?<br>B: No, we didn’t see Granada.","A: When did {} home?<br>B: I came home last Saturday."],
+a:[["you go"],["you travel"],["you see"],["you come"]]},
+{n:"Bonus ⭐ Irregular verbs",e:"⭐",c:"#1fa968",max:6,bonus:1,topic:"неправильные глаголы",
+h:"Дополнительная практика (в основной балл не входит). 👆 Перетащи правильную форму глагола в Past Simple в пропуск.",
+b:["We {|ate*/eated/eat} pizza last night.","She {|losed/lost*/lose} her keys yesterday.","I {|seen/sawed/saw*} a great film on Sunday.","They {|flew*/flied/flyed} to Spain by plane.","He {|writed/written/wrote*} a postcard to me.","{|Do/Did*/Does} you do your homework yesterday?"],
+a:[[],[],[],[],[],[]]}
+];
+SECS.pop();
+const EM=[["🚶","🏫","🚌","🏠","🚇","🏍️"],["📸","🏨","🕶️","⛺","🧳","🎁"],["📷","📺","🏄","💡","😄"],["🥪","✅","🍝","❌"],["🧭","✈️","🏰","🏡"],["🍕","🔑","🎬","🛫","💌","📚"]];
+const TIP=["go on foot — пешком; by + транспорт (by bike, by underground); take a bus — ехать на автобусе; leave — уезжать, arrive — приезжать.","Слова о путешествии: sightseeing (осмотр достопримечательностей), hotel, sunglasses, sleeping bags, suitcase, souvenirs.","Отрицание: didn’t + глагол в начальной форме (didn’t take, а НЕ didn’t took). В утверждении — 2-я форма: had, went.","Вопрос: Did + подлежащее + глагол в начальной форме (Did he eat…?). Краткий ответ: Yes, he did. / No, they didn’t.","Where / How / When + did + подлежащее + глагол: Where did you go? Did you see…?","Неправильные глаголы: eat–ate, lose–lost, see–saw, fly–flew, write–wrote. Вопрос: Did + you + do."];
+const D=["didn't ","did not "];
+const X=[
+[["My grandpa goes to the shop {} foot.",["on"]],["What time do you {} at school?",["arrive"],"a…"],["My brother {} the train to work.",["takes"],"t…"],["The train {} at six o’clock.",["leaves"],"l…"],["In London you can travel by {} – it goes under the city.",["underground"],"u…"],["A {} has two wheels and an engine.",["motorbike"],"m…"]],
+[["We spent the day {} in Rome: we saw the Colosseum.",["sightseeing"],"s…"],["We stayed in a {} with a swimming pool.",["hotel"],"h…"],["It’s very sunny! Put on your {}.",["sunglasses"],"s…"],["We slept in the tent in our {}.",["sleeping bags"],"s… b…"],["I put my clothes in my {}.",["suitcase"],"s…"],["I bought some {} for my friends: a mug and a T-shirt.",["souvenirs"],"s…"]],
+[["She {} (not take) her phone.",["didn't take","did not take"]],["We {} (not watch) a film yesterday.",["didn't watch","did not watch"]],["He {} (not play) games.",["didn't play","did not play"]],["They {} (not use) a map.",["didn't use","did not use"]],["My parents {} (have) a big breakfast.",["had"]]],
+[["A: Anna bought a T-shirt.<br>B: {} (she / buy) a skirt too?",["did she buy"]],["A: Did Tom watch TV?<br>B: Yes, {}.",["he did"]],["A: Tom and Ben visited the city.<br>B: {} (they / visit) the museum?",["did they visit"]],["A: Did the girls swim?<br>B: No, {}.",["they didn't","they did not"]]],
+[["A: Where did {} (you / stay)?<br>B: We stayed in a hotel.",["you stay"]],["A: How did {} (you / get) to school?<br>B: By bus.",["you get"]],["A: Did {} (you / visit) the castle?<br>B: Yes, we did.",["you visit"]],["A: When did {} (you / arrive)?<br>B: Last night.",["you arrive"]]],
+[["She {} (eat) rice yesterday.",["ate"]],["I {} (lose) my bag at school.",["lost"]],["We {} (see) a lion at the zoo.",["saw"]],["The bird {} (fly) away.",["flew"]],["She {} (write) a letter to me.",["wrote"]],["A: {} you like the film?<br>B: Yes, I did.",["did"]]]
+];
+let wr=[],sel=null,fl=null;
+const $=s=>document.querySelector(s),A=[];let all=[];
+function build(){
+ const box=$("#secs");box.innerHTML="";all=[];R=[];
+ SECS.forEach((S,si)=>{
+  const d=document.createElement("section");d.className="sec";d.style.setProperty("--c",S.c);
+  let k=0,pend="";A[si]=[];
+  const rep=t=>t.replace(/\{([^}]*)\}/g,(m,x)=>{
+   const i=k++;let h=`<b class="nb">${EM[si][i]}</b>`;
+   if(x.startsWith("|")){
+    let o=x.slice(1).split("/"),ans,g;
+    if(o[0]==="*"){ans=S.a[i];g="s"+si}
+    else{ans=[o.find(z=>z.endsWith("*")).replace("*","")];o=o.map(z=>z.replace("*",""));g="b"+i;pend+=`<div>${o.map(z=>`<span class="chip" data-g="${g}" data-v="${z}">${z}</span>`).join("")}</div>`}
+    A[si][i]=ans;
+    return h+`<input class="drop" readonly placeholder="…" data-g="${g}" data-s="${si}" data-i="${i}">`;
+   }
+   A[si][i]=S.a[i];
+   const ph=x?x.split(" ").map(w=>w+"…").join(" "):"";
+   return h+`<input data-s="${si}" data-i="${i}" placeholder="${ph}" size="${x?14:12}" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  });
+  let body="";
+  if(S.bank)body+=`<div class="bank"><em class="exchip">✏️ <s>bike</s> (пример)</em>${S.bank.split(" ").sort().map(w=>`<span class="chip" data-g="s${si}" data-v="${w}">${w}</span>`).join("")}</div>`;
+  if(S.ex)body+=`<div class="ex">${S.ex}</div>`;
+  if(S.t)body+=`<div>${rep(S.t)}</div>`;
+  if(S.b)body+=S.b.map(x=>{pend="";const r=rep(x);return `<div class="blk">${r}${pend}</div>`}).join("");
+  d.innerHTML=`<h2>${S.e} ${S.n}</h2><div class="hint">${S.h}</div>${body}<div class="btns" style="margin:10px 0 0"><button class="sb" id="cb${si}">✅ Проверить</button><div id="cr${si}" style="font-weight:700;margin-top:8px"></div></div>`;
+  box.appendChild(d);d.querySelector(".sb").onclick=()=>secCheck(si);
+ });
+ all=[...document.querySelectorAll("[data-s]")];
+ all.forEach(el=>el.addEventListener("input",()=>{el.classList.toggle("f",!!el.value.trim());el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop");prog()}));
+ sel=null;dnd();prog();
+}
+function el_change(){all.forEach(el=>el.addEventListener("change",()=>{el.classList.toggle("f",!!el.value);prog()}))}
+function prog(){const n=all.filter(e=>e.value.trim()).length;$("#pb").style.width=100*n/all.length+"%";$("#pt").textContent=`${n} / ${all.length} answered`}
+function setV(el,v){
+ const g=el.dataset.g;
+ if(v&&g[0]==="s")document.querySelectorAll(`.drop[data-g="${g}"]`).forEach(d=>{if(d!==el&&d.value===v){d.value="";d.classList.remove("f")}});
+ el.value=v;el.classList.toggle("f",!!v);el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop");
+ if(g[0]==="s"){const ds=[...document.querySelectorAll(`.drop[data-g="${g}"]`)];document.querySelectorAll(`.chip[data-g="${g}"]`).forEach(c=>c.classList.toggle("used",ds.some(d=>d.value===c.dataset.v)))}
+ prog();
+}
+function at(ev,c){const e=document.elementFromPoint(ev.clientX,ev.clientY),d=e&&e.closest(".drop");return d&&d.dataset.g===c.dataset.g&&!d.disabled?d:null}
+function dnd(){
+ document.querySelectorAll(".chip").forEach(c=>c.addEventListener("pointerdown",e=>{
+  e.preventDefault();const sx=e.clientX,sy=e.clientY;let mv=false,fl=null;
+  const hot=t=>{document.querySelectorAll(".drop.hot").forEach(d=>d.classList.remove("hot"));if(t)t.classList.add("hot")};
+  const mm=ev=>{if(!mv&&Math.hypot(ev.clientX-sx,ev.clientY-sy)>6){mv=true;fl=c.cloneNode(true);fl.classList.add("fl");document.body.appendChild(fl)}
+   if(mv){fl.style.left=ev.clientX+"px";fl.style.top=ev.clientY+"px";hot(at(ev,c))}};
+  const up=ev=>{removeEventListener("pointermove",mm);removeEventListener("pointerup",up);hot(null);
+   if(mv){fl.remove();const t=at(ev,c);if(t)setV(t,c.dataset.v)}
+   else{document.querySelectorAll(".chip.sel").forEach(x=>x.classList.remove("sel"));if(sel===c)sel=null;else{sel=c;c.classList.add("sel")}}};
+  addEventListener("pointermove",mm);addEventListener("pointerup",up)}));
+ document.querySelectorAll(".drop").forEach(d=>d.addEventListener("click",()=>{
+  if(d.disabled)return;
+  if(sel&&sel.dataset.g===d.dataset.g){setV(d,sel.dataset.v);sel.classList.remove("sel");sel=null}else if(d.value)setV(d,"")}));
+}
+function remed(){
+ const f=$("#fix");
+ if(!wr.length){f.innerHTML=`<div class="rem" style="text-align:center">🎉 <b>Работа над ошибками не нужна — ошибок нет!</b></div>`;return}
+ const seen=new Set();
+ f.innerHTML=`<div class="rem"><h2 style="color:#ff9f1c">🛠️ Работа над ошибками и дополнительная практика</h2><div class="hint">Посмотри, где ты ошибся, прочитай подсказку и выполни новое задание на ту же тему.</div>`+
+ wr.map(([s,i,v],k)=>{const x=X[s][i],tip=seen.has(s)?"":`<div class="tip">💡 ${TIP[s]}</div>`;seen.add(s);
+  return `<div class="rc"><div>${EM[s][i]} <b>${SECS[s].n}</b> · ты написал: <b style="color:var(--bad)">${v||"—"}</b> → правильно: <b style="color:var(--ok)">${A[s][i][0].replace(/'/g,"’")}</b></div>${tip}<div>🆕 ${x[0].replace("{}",`<input class="rx" data-k="${k}" placeholder="${x[2]||""}" size="14" autocomplete="off" autocapitalize="off" spellcheck="false" style="--c:#ff9f1c">`)}</div></div>`}).join("")+
+ `<div class="btns"><button id="chk2">✅ Проверить</button></div><div id="r2"></div></div>`;
+ $("#chk2").onclick=()=>{let ok=0;
+  document.querySelectorAll(".rx").forEach(el=>{const [s,i]=wr[+el.dataset.k],a=X[s][i][1],g=a.some(z=>norm(z)===norm(el.value));
+   el.disabled=true;el.classList.add(g?"ok":"no");const e=document.createElement("em");e.className="fix";e.textContent=g?"✅":"❌ → "+a[0].replace(/'/g,"’");el.after(e);if(g)ok++});
+  $("#chk2").disabled=true;
+  $("#r2").innerHTML=`<div style="text-align:center;font-size:20px;font-weight:700">🔧 Исправлено: ${ok} / ${wr.length}${ok===wr.length?" 🎉 Молодец!":" — перечитай подсказки и попробуй ещё раз 💪"}</div>`;
+  if(ok===wr.length)conf()};
+}
+let R=[];
+function secCheck(si){
+ if(R[si])return;
+ const r={sc:0,wr:[]};R[si]=r;
+ all.filter(el=>+el.dataset.s===si).forEach(el=>{
+  const i=+el.dataset.i,ok=A[si][i].some(a=>norm(a)===norm(el.value));
+  el.disabled=true;el.classList.add(ok?"ok":"no");
+  const e=document.createElement("em");e.className="fix";
+  if(ok){r.sc++;e.textContent="✅"}else{r.wr.push([si,i,el.value]);e.textContent="❌ → "+A[si][i][0].replace(/'/g,"’")}
+  el.after(e);
+ });
+ $("#cb"+si).disabled=true;
+ $("#cr"+si).innerHTML=`${r.sc===SECS[si].max?"🎉":"📊"} Результат: <b>${r.sc} / ${SECS[si].max}</b>${r.sc<SECS[si].max?" — посмотри исправления выше 👆":""}`;
+}
+function check(){
+ SECS.forEach((S,i)=>secCheck(i));
+ wr=R.flatMap(r=>r.wr);
+ show(R.map(r=>r.sc));remed();
+}
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.?!]+$/,"").replace(/\s+/g," ").trim();
+function checkOld(){
+ const sc=SECS.map(()=>0);wr=[];
+ all.forEach(el=>{
+  const s=+el.dataset.s,i=+el.dataset.i,ok=A[s][i].some(a=>norm(a)===norm(el.value));
+  el.disabled=true;el.classList.add(ok?"ok":"no");if(!ok)wr.push([s,i,el.value]);
+  {const e=document.createElement("em");e.className="fix";if(ok){sc[s]++;e.textContent="✅"}else e.textContent="❌ → "+A[s][i][0].replace(/'/g,"’");el.after(e)}
+ });
+ show(sc);remed();
+}
+function show(sc){
+ let tot=0,max=0;SECS.forEach((S,i)=>{if(!S.bonus){tot+=sc[i];max+=S.max}});
+ const p=Math.round(100*tot/max);
+ const L=p>=92?["🏆 Excellent! / Отлично!","5","Ты супер! Тема усвоена на отлично."]:p>=76?["🌟 Very good! / Очень хорошо!","4","Отличный результат, осталось поправить пару мелочей."]:p>=56?["👍 Good / Хорошо","3","Неплохо, но есть что повторить — смотри советы ниже."]:p>=36?["📚 Needs revision / Нужно повторить","2","Пока много ошибок. Повтори материал и попробуй ещё раз!"]:["💪 Let’s practise more! / Давай потренируемся!","2","Не расстраивайся! Перечитай правила и попробуй снова."];
+ const weak=SECS.filter((S,i)=>!S.bonus&&sc[i]/S.max<0.7).map(S=>`<li><b>${S.n}:</b> ${S.topic}</li>`).join("");
+ const name=$("#nm").value.trim()||"—";
+ $("#res").innerHTML=`<div style="color:var(--mut)">📅 ${new Date().toLocaleDateString("ru-RU")} · 👤 <b style="color:var(--tx)">${name}</b></div>
+ <div class="big">${tot} / ${max}</div><div style="font-size:24px;font-weight:700">${p}% · оценка ${L[1]}</div>
+ <div class="lvl" style="color:#6c5ce7">${L[0]}</div><div>${L[2]}</div><div style="margin:12px 0">`+
+ SECS.map((S,i)=>`<div class="row"><span class="t">${S.e} ${S.bonus?"Bonus":S.n}</span><span class="b"><i style="width:${100*sc[i]/S.max}%;background:${S.c}"></i></span><span class="n">${sc[i]}/${S.max}</span></div>`).join("")+
+ `</div>`+(weak?`<div class="adv">🔁 <b>Что повторить:</b><ul style="margin:4px 0 0;padding-left:20px">${weak}</ul></div>`:`<div class="adv">🎉 Все разделы выполнены уверенно — повторять ничего не нужно!</div>`)+
+ `<div style="margin-top:10px;color:var(--mut);font-size:14px">📸 Сделай скриншот этого результата и отправь учителю!</div>`;
+ $("#res").classList.add("on");$("#res").scrollIntoView({behavior:"smooth"});
+ if(p>=56)setTimeout(conf,300);
+}
+function conf(){const c=$("#cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;
+ const P=[...Array(160)].map(()=>({x:Math.random()*c.width,y:-Math.random()*c.height*.6,v:2+Math.random()*4,r:5+Math.random()*6,h:Math.random()*360,s:Math.random()*2-1}));let f=0;
+ (function L(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.v;p.x+=p.s;x.fillStyle=`hsl(${p.h},90%,60%)`;x.fillRect(p.x,p.y,p.r,p.r*1.6)});if(++f<260)requestAnimationFrame(L)})()}
+$("#chk").onclick=()=>{if(!$("#res").classList.contains("on"))check()};
+$("#rst").onclick=()=>{build();$("#fix").innerHTML="";$("#res").classList.remove("on");scrollTo({top:0,behavior:"smooth"})};
+build();
+</script></body></html>
