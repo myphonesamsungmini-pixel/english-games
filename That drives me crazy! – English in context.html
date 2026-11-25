@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>That drives me crazy! – English in context</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f7;--card:#fff;--ink:#16294a;--mute:#5d6b86;--line:#d5dbe8;--acc:#6d3bd2;--accT:#fff;--hot:#ffc933;--ok:#1f9d63;--okBg:#dcf5e8;--bad:#d6453d;--badBg:#fde4e2;--me:#e6defa;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1830;--card:#192544;--ink:#eef1fb;--mute:#9aa7c7;--line:#2c3a5f;--acc:#a98bff;--accT:#14122b;--okBg:#12372a;--badBg:#43201f;--ok:#4cd08e;--bad:#ff7d74;--me:#2d2554}}
+:root[data-theme="dark"]{--bg:#0f1830;--card:#192544;--ink:#eef1fb;--mute:#9aa7c7;--line:#2c3a5f;--acc:#a98bff;--accT:#14122b;--okBg:#12372a;--badBg:#43201f;--ok:#4cd08e;--bad:#ff7d74;--me:#2d2554}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Fredoka",ui-rounded,"Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.45}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:600}
+.sub{color:var(--mute);margin:0 0 14px}
+.meter{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 14px;margin-bottom:14px}
+.meter b{display:block;font-weight:500;font-size:20px}
+.bar{height:16px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--hot),#ff8a3d,var(--bad));transition:width .5s}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px}
+.tabs button{flex:0 0 auto;font:inherit;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:8px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--acc);color:var(--accT);border-color:var(--acc)}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px}
+button,textarea{font:inherit;color:var(--ink)}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.btn{border:2px solid var(--acc);background:var(--acc);color:var(--accT);border-radius:14px;padding:10px 18px;cursor:pointer;font-weight:500}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.row>*{flex:1 1 140px}
+.tag{font-size:15px;color:var(--mute);margin:0 0 10px}
+.post{display:flex;gap:10px;margin-bottom:10px}
+.av{flex:0 0 44px;height:44px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:grid;place-items:center;font-size:22px}
+.bub{background:var(--bg);border:2px solid var(--line);border-radius:6px 18px 18px 18px;padding:8px 14px;flex:1}
+.bub small{display:block;color:var(--mute);font-size:14px}
+.bub.me{background:var(--me);border-color:var(--acc)}
+.bub.out{border-radius:18px 6px 18px 18px}
+.gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--acc);text-align:center;color:var(--acc);font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:2px solid var(--line);background:var(--bg);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:left}
+.opt.ok{background:var(--okBg);border-color:var(--ok)}
+.opt.no{background:var(--badBg);border-color:var(--bad)}
+.fb{margin-top:12px;font-weight:500;min-height:24px}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.goal{display:inline-block;background:var(--hot);color:#2a1d00;border-radius:10px;padding:3px 10px;font-weight:500;margin:4px 0 10px}
+textarea{width:100%;min-height:96px;border:2px solid var(--line);border-radius:14px;background:var(--bg);padding:10px;resize:vertical}
+.chk div{padding:3px 0}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.bank span{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:2px 10px;font-size:15px}
+.rp{display:grid;gap:10px;margin-top:6px}
+.rp>div{border:2px solid var(--line);border-radius:16px;padding:10px 14px;background:var(--bg)}
+.rp b{display:block;font-weight:500;color:var(--mute);font-size:14px}
+.done{text-align:center;padding:20px 0}
+.big{font-size:56px;line-height:1}
+@media (max-width:480px){.opts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>That drives me crazy! 😤</h1>
+<p class="sub">Read, react and write: use the expressions in real situations.</p>
+<div class="meter"><b id="lvl">I can stand it… (0 XP)</b><div class="bar"><i id="fill"></i></div></div>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="panel" id="app"></div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+let xp=0;
+const levels=[[0,"I can stand it…"],[25,"It bugs me!"],[60,"It gets on my nerves!"],[110,"It drives me crazy!"],[170,"I’m going nuts!!"]];
+function addXP(n){xp+=n;let l=levels[0];levels.forEach(x=>{if(xp>=x[0])l=x});$("#lvl").textContent=l[1]+" ("+xp+" XP)";$("#fill").style.width=Math.min(100,xp/170*100)+"%"}
+
+/* 1. Comment thread: [avatar, user, post, commenter, comment with ___, options, answer, why] */
+const T=[
+["🚉","tom_92","Missed my train again. The announcement was impossible to hear, and some guy jumped the queue at the info desk.","lena","Ugh, I can’t ___ it when people jump the queue!",["stand","annoy","drive","get"],"stand","can’t stand / can’t bear + it when + clause."],
+["🏠","kate_flat","My flatmate leaves a mess in the kitchen every single day. Dirty plates, crumbs, everything.","ben","Oh no. He ___ leaving dirty plates in the sink! Just tell him.",["is always","always is","does always","has always"],"is always","Раздражающая привычка: is/are + always + -ing."],
+["🚌","mo_z","Guy on the bus was chewing loudly and eating the smelliest food ever. I nearly got off.","ida","Same thing happened to me. It ___ on my nerves when people do that.",["gets","goes","drives","bugs"],"gets","It gets on my nerves when… (нельзя: drives on my nerves)."],
+["📱","dani","My brother interrupts me every time I speak and never replies to my texts.","jo","Sounds like my brother! He drives me ___ .",["nuts","nerves","annoyed","bear"],"nuts","drives me crazy / nuts / mad."],
+["🏘️","sam_k","Moving out! My last flatmate was a nightmare.","ruth","Mine was constantly ___ my stuff without asking.",["borrowing","borrow","borrowed","borrows"],"borrowing","was constantly + -ing: привычка в прошлом."],
+["🚶","nina","Rush hour: tourists walking slowly in the middle of the pavement while I’m in a hurry.","vic","Yes! And they always get ___ the way. Then someone threw litter out of a car window right next to me.",["in","on","at","by"],"in","get in the way = мешать."],
+["🎬","pia","Just watched the finale!! Mind blown.","alex","No spoilers!! It really ___ me when people ruin the ending.",["annoys","annoy","annoying","annoyed"],"annoys","It really annoys me when… (3-е лицо, -s)."],
+["🧒","max_b","The kids next door argue loudly at 2 a.m. and behave badly on the stairs.","eva","Don’t just ___ them. Talk to your landlord!",["ignore","react","borrow","complain"],"ignore","ignore someone = не обращать внимания."],
+["🚗","tina","Our old car was a joke.","luke","Haha! Ours was forever ___ down on the motorway.",["breaking","broke","break","breaks"],"breaking","was forever + -ing (annoying habit in the past)."]
+];
+function thread(){
+ let q=shuf(T),i=0,s=0;
+ const draw=()=>{
+  if(i>=q.length)return done("Score: "+s+" / "+q.length);
+  const t=q[i];
+  $("#app").innerHTML='<p class="tag">Comment '+(i+1)+' / '+q.length+' · Choose the best word for the gap</p>'+
+  '<div class="post"><div class="av">'+t[0]+'</div><div class="bub"><small>@'+t[1]+'</small>'+t[2]+'</div></div>'+
+  '<div class="post" style="margin-left:24px"><div class="av">💬</div><div class="bub me"><small>@'+t[3]+'</small>'+t[4].replace("___",'<span class="gap" id="gap">&nbsp;</span>')+'</div></div>'+
+  '<div class="opts">'+shuf(t[5]).map(o=>'<button class="opt">'+o+'</button>').join("")+'</div><div class="fb" id="fb"></div><div class="row"><button class="btn ghost" id="nx">Next ›</button></div>';
+  $("#nx").onclick=()=>{i++;draw()};
+  let lock=false;
+  $("#app").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+   if(lock)return;lock=true;const ok=b.textContent==t[6];
+   $("#gap").textContent=t[6];b.classList.add(ok?"ok":"no");
+   if(ok){s++;addXP(5)}else $("#app").querySelectorAll(".opt").forEach(x=>{if(x.textContent==t[6])x.classList.add("ok")});
+   $("#fb").className="fb "+(ok?"ok":"no");$("#fb").textContent=(ok?"Yes! ":"Not quite. ")+t[7];
+  });
+ };draw();
+}
+
+/* 2. Chat replies: [avatar, name, message, goal, options, answer] */
+const C=[
+["🧑","Flatmate","You’re ALWAYS leaving your dirty plates in the sink! 😡","You feel guilty. Apologise and promise to change.",["That’s not fair! I did it once.","I’m so sorry. It won’t happen again.","Fair enough, no worries."],1],
+["👩","Friend","You never reply to my messages!","You think she’s exaggerating. Defend yourself politely.",["I’m not always ignoring you. It’s only happened once or twice.","My bad. Let me make it up to you.","No worries. Thanks for telling me."],0],
+["🧑","Flatmate","I’m so sorry about the noise last night. I’ll be more careful.","You are the one who complained. Accept the apology kindly.",["Let’s not make a big thing of it.","You’re overreacting.","That was wrong of me."],0],
+["👩","Sister","This is a DISASTER! You borrowed my jacket and now there’s a tiny mark on it!","The mark is really small. Calm her down.",["Let’s not exaggerate. It’s not that bad.","I promise I’ll be more careful.","No worries."],0],
+["🧑","Mum","The kitchen’s a mess again.","You’ll clean it very soon. Say so.",["That’s not true!","It’s not a big deal.","I’ll sort it out in a minute."],2],
+["👦","Best friend","You spoiled the ending of our series!!","You messed up. Apologise and offer something.",["Let’s not exaggerate.","Let me make it up to you. You can pick the next one!","Fair enough."],1]
+];
+function chat(){
+ let q=shuf(C),i=0,s=0;
+ const draw=()=>{
+  if(i>=q.length)return done("Score: "+s+" / "+q.length);
+  const c=q[i];
+  $("#app").innerHTML='<p class="tag">Chat '+(i+1)+' / '+q.length+'</p><div class="post"><div class="av">'+c[0]+'</div><div class="bub"><small>'+c[1]+'</small>'+c[2]+'</div></div><div class="goal">🎯 '+c[3]+'</div><div class="opts one">'+c[4].map((o,k)=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join("")+'</div><div class="fb" id="fb"></div><div class="row"><button class="btn ghost" id="nx">Next ›</button></div>';
+  $("#nx").onclick=()=>{i++;draw()};
+  let lock=false;
+  $("#app").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+   if(lock)return;lock=true;const ok=+b.dataset.k==c[5];
+   b.classList.add(ok?"ok":"no");
+   if(ok){s++;addXP(6)}else $("#app").querySelectorAll(".opt")[c[5]].classList.add("ok");
+   $("#fb").className="fb "+(ok?"ok":"no");$("#fb").textContent=ok?"Perfect reply!":"Check the goal: which reply does that job?";
+  });
+ };draw();
+}
+
+/* 3. Write a comment: [emoji, post, need, model] */
+const S1=["can’t stand/bear it when · annoys me when · gets on my nerves when · bugs me when · drives me crazy/nuts/mad when","always / constantly / forever + -ing"];
+const RX1=/can't (stand|bear) it when|annoys me when|gets on my nerves when|bugs me when|drives me (crazy|nuts|mad) when/i;
+const RXN=/(is|are|am|'s|'re|'m) (always|constantly|forever) \w+ing|(always|constantly|forever) \w+ing/i;
+const RXP=/(was|were) (always|constantly|forever) \w+ing/i;
+const W=[
+["🛋️","You live with the worst flatmate ever. Write a comment under the post “Who has the most annoying flatmate? 😅”",[["an annoyance expression + when",RX1],["always / constantly / forever + -ing",RXN]],"I can’t stand it when my flatmate leaves a mess. He’s constantly eating my food and he’s always playing loud music!"],
+["🎸","Your neighbour plays the guitar at night. Reply to the post “How do you deal with loud neighbours?”",[["an annoyance expression + when",RX1],["always / constantly / forever + -ing",RXN]],"It drives me crazy when my neighbour plays the guitar at midnight. He’s forever practising the same song!"],
+["🚌","You hate public transport habits. Comment on “What annoys you on the bus?”",[["an annoyance expression + when",RX1],["a habit with always / constantly / forever",RXN]],"It really annoys me when people chew loudly. They’re always eating smelly food, too."],
+["🚗","Write about your old flatmate or neighbour (past!). Comment on “Tell us your worst housemate story”",[["was/were + always / constantly / forever + -ing",RXP]],"My old flatmate was constantly borrowing my things, and he was forever leaving a mess in the kitchen."]
+];
+function write(){
+ let q=shuf(W),i=0;
+ const draw=()=>{
+  if(i>=q.length)return done("All comments written!");
+  const w=q[i];
+  $("#app").innerHTML='<p class="tag">Task '+(i+1)+' / '+q.length+'</p><div class="post"><div class="av">'+w[0]+'</div><div class="bub">'+w[1]+'</div></div><div class="bank"><span>'+S1.join('</span><span>')+'</span></div><textarea id="ta" placeholder="Write your comment (1–2 sentences)…"></textarea><div class="chk" id="ck"></div><div class="row"><button class="btn" id="go">Check</button><button class="btn ghost" id="nx">Next ›</button></div>';
+  $("#nx").onclick=()=>{i++;draw()};
+  $("#go").onclick=()=>{
+   const t=$("#ta").value.replace(/[’‘]/g,"'");
+   const r=w[2].map(n=>[n[0],n[1].test(t)]);
+   $("#ck").innerHTML=r.map(x=>'<div>'+(x[1]?"✅":"⬜")+' '+x[0]+'</div>').join("")+'<div class="tag" style="margin-top:8px">Example: '+w[3]+'</div>';
+   if(r.every(x=>x[1])){addXP(10);$("#go").disabled=true}
+   else $("#go").textContent="Check again";
+  };
+ };draw();
+}
+
+/* 4. Roleplay */
+const SIT=["Your flatmate leaves dirty dishes in the sink every day.","Your neighbour plays the guitar late at night.","Your friend spoiled the ending of a series you love.","A colleague chews loudly and eats smelly food at their desk.","Your friend never replies to your messages.","Your brother borrows your things without asking and interrupts you.","Someone jumped the queue in front of you, and walked slowly in your way."];
+const GOAL=["Defend yourself: say it’s not true / not that bad.","Apologise: promise it won’t happen again.","Accept the complaint: be calm and say you’ll sort it out."];
+function role(){
+ let sw=false;
+ const draw=()=>{
+  const sit=SIT[Math.random()*SIT.length|0],g=GOAL[Math.random()*3|0];
+  $("#app").innerHTML='<p class="tag">Work in pairs. 1 minute, then swap.</p><div class="rp"><div><b>Situation</b>'+sit+'</div><div><b>Student A (complains)</b>Use 2 annoyance expressions + always/constantly/forever + -ing.</div><div><b>Student B (replies)</b>'+g+'</div></div><div class="row"><button class="btn ghost" id="nw">🎲 New situation</button><button class="btn" id="ok">✅ We did it! +10 XP</button></div>';
+  $("#nw").onclick=draw;$("#ok").onclick=()=>{addXP(10);draw()};
+ };draw();
+}
+
+const tabs=[["thread","💬 Comments"],["write","✍️ Write"],["chat","📲 Replies"]];
+const fn={thread,chat,write};
+let cur="thread";
+function nav(){$("#tabs").innerHTML=tabs.map(t=>'<button role="tab" aria-selected="'+(t[0]==cur)+'" data-t="'+t[0]+'">'+t[1]+'</button>').join("");
+$("#tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.t;nav();fn[cur]()})}
+function done(m){$("#app").innerHTML='<div class="done"><div class="big">🎉</div><p style="font-size:24px;font-weight:600">'+m+'</p><div class="row"><button class="btn" id="again">Play again</button></div></div>';$("#again").onclick=()=>fn[cur]()}
+nav();fn[cur]();
+</script>
+</body>
+</html>
